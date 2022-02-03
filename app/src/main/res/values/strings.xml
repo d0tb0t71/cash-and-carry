@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Cash &amp; Carry</string>
+
+    <string-array name="category">
+
+        <item>Select Category</item>
+        <item>Baby</item>
+        <item>Eye</item>
+        <item>Fragrance</item>
+        <item>Hair</item>
+        <item>Makeup</item>
+        <item>Skin Care</item>
+        <item>Others</item>
+
+    </string-array>
 </resources>

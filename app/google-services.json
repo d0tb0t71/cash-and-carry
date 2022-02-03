@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "918941809759",
+    "project_id": "cash-and-carry-af078",
+    "storage_bucket": "cash-and-carry-af078.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918941809759:android:489fc6ec5bb1d6d590afea",
+        "android_client_info": {
+          "package_name": "com.example.cashcarry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918941809759-6kqvutd8e8jsngjn140rf0un621902lu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCla-e4YqKPo-uf1KZHsfOTNnfdEmE9AJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918941809759-6kqvutd8e8jsngjn140rf0un621902lu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
