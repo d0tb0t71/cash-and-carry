@@ -14,7 +14,6 @@ import android.widget.Spinner;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.lang.reflect.Array;
 import java.sql.Timestamp;
 
 public class AddProduct extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -67,7 +66,7 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
                         .document(pID)
                         .set(product);
 
-                startActivity(new Intent(getApplicationContext(),Home.class));
+                startActivity(new Intent(getApplicationContext(), ProductView.class));
                 finish();
 
 

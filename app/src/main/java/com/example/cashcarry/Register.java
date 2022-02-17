@@ -92,7 +92,7 @@ public class Register extends AppCompatActivity {
                 });
 
 
-                startActivity(new Intent(getApplicationContext(),Home.class));
+                startActivity(new Intent(getApplicationContext(), ProductView.class));
 
             }
         });

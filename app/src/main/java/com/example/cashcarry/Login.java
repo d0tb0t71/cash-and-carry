@@ -60,7 +60,7 @@ public class Login extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if(task.isSuccessful() ){
                             if(user.isEmailVerified()){
-                                startActivity(new Intent(getApplicationContext(),Home.class));
+                                startActivity(new Intent(getApplicationContext(), Home.class));
                             }
                             else
                             {
@@ -96,7 +96,7 @@ public class Login extends AppCompatActivity {
         super.onStart();
 
         if(mAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),Home.class));
+            startActivity(new Intent(getApplicationContext(), Home.class));
         }
 
     }
