@@ -11,6 +11,9 @@ public class UserModel {
     String isVerified;
     String address;
 
+    public UserModel() {
+    }
+
     public UserModel(String uid, String imageUrl, String name, String email, String mobile, String userStatus, String isVerified, String address) {
         this.uid = uid;
         this.imageUrl = imageUrl;

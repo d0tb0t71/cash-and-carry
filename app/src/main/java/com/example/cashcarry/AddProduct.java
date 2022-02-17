@@ -63,6 +63,8 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
                 ProductModel product = new ProductModel(pID,pName,pType,pPrice);
 
                 db.collection("products")
+                        .document(mAuth.getCurrentUser().getUid())
+                        .collection("myProduct")
                         .document(pID)
                         .set(product);
 

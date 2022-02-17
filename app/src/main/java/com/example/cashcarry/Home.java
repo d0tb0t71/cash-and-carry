@@ -1,6 +1,9 @@
 package com.example.cashcarry;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Build;
@@ -9,17 +12,30 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.util.ArrayList;
+
 public class Home extends AppCompatActivity {
 
-    Button go_pv;
 
     SliderView sliderView;
+    RecyclerView shop_recyclerview;
     int[] images = {R.drawable.c1 ,R.drawable.c2,R.drawable.c3,R.drawable.c4};
+
+    UserAdapter userAdapter;
+    ArrayList<UserModel> list;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +49,48 @@ public class Home extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.mainBG));
         }
 
-        go_pv = findViewById(R.id.go_pv);
+        shop_recyclerview = findViewById(R.id.shop_recyclerview);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(Home.this);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        shop_recyclerview.setLayoutManager(layoutManager);
+
+        list = new ArrayList<>();
+
+        userAdapter = new UserAdapter(this,list);
+        shop_recyclerview.setAdapter(userAdapter);
+
+        db = FirebaseFirestore.getInstance();
+
+
+        db.collection("users")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                        if(error != null){
+                            Toast.makeText(getApplicationContext(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        for(DocumentChange dc : value.getDocumentChanges()){
+
+                            if(dc.getType() == DocumentChange.Type.ADDED){
+                                list.add(dc.getDocument().toObject(UserModel.class));
+                            }
+
+                            userAdapter.notifyDataSetChanged();
+
+                        }
+
+                    }
+                });
+
+
+
+
 
 
         sliderView = findViewById(R.id.imageSlider);
@@ -44,15 +101,6 @@ public class Home extends AppCompatActivity {
         sliderView.startAutoCycle();
 
 
-
-
-
-        go_pv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),ProductView.class));
-            }
-        });
 
     }
 }

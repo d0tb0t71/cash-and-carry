@@ -11,10 +11,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -31,6 +36,8 @@ public class ProductView extends AppCompatActivity {
     RecyclerView productRecyclerView;
 
     FloatingActionButton add_product_btn;
+    TextView shop_name,shop_email,shop_mobile;
+    ImageView call_now;
 
     ProductAdapter productAdapter;
     ArrayList<ProductModel> list;
@@ -43,16 +50,19 @@ public class ProductView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_view);
 
+        String ShopID = getIntent().getStringExtra("ShopID");
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.mainBG));
         }
 
-
-
         add_product_btn = findViewById(R.id.add_product_btn);
-
+        shop_name = findViewById(R.id.shop_name);
+        shop_email = findViewById(R.id.shop_email);
+        shop_mobile = findViewById(R.id.shop_mobile);
+        call_now = findViewById(R.id.call_now);
 
         productRecyclerView = findViewById(R.id.productRecyclerView);
         productRecyclerView.setHasFixedSize(true);
@@ -67,7 +77,25 @@ public class ProductView extends AppCompatActivity {
 
         productRecyclerView.setAdapter(productAdapter);
 
+        DocumentReference documentReference = db.collection("users").document(ShopID);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                shop_name.setText(value.getString("name"));
+                shop_email.setText(value.getString("email"));
+                shop_mobile.setText(value.getString("mobile"));
+
+
+            }
+        })
+        ;
+
+
         getData();
+
+
+
 
 
 
@@ -83,7 +111,7 @@ public class ProductView extends AppCompatActivity {
 
     private void getData(){
 
-        db.collection("products")
+        db.collection("products").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("myProduct")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
