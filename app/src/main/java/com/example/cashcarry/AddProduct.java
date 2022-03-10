@@ -16,11 +16,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.sql.Timestamp;
 
-public class AddProduct extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddProduct extends AppCompatActivity {
 
-    Spinner spinner;
-    String spinnerValue = "Select Category";
-    EditText product_name,product_price;
+
+    EditText product_name,product_price,product_des;
     Button add_product_btn;
 
     FirebaseFirestore db;
@@ -35,16 +34,11 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        spinner = findViewById(R.id.categorySelectSpinner);
+
         product_name = findViewById(R.id.product_name);
         product_price = findViewById(R.id.product_price);
+        product_des = findViewById(R.id.product_des);
         add_product_btn = findViewById(R.id.add_product_btn);
-
-        spinner.setOnItemSelectedListener(this);
-        String[] categoryName = getResources().getStringArray(R.array.category);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,categoryName);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
 
 
@@ -54,13 +48,13 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
 
                 String pName = ""+ product_name.getText().toString();
                 String pPrice = "" + product_price.getText().toString();
-                String pType = spinnerValue;
+                String pDes = "" + product_des.getText().toString();
 
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 long time = timestamp.getTime();
                 String pID = "CC" + time;
 
-                ProductModel product = new ProductModel(pID,pName,pType,pPrice);
+                ProductModel product = new ProductModel(pID,pName,pDes,pPrice);
 
                 db.collection("products")
                         .document(mAuth.getCurrentUser().getUid())
@@ -81,20 +75,4 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            if(parent.getId() == R.id.categorySelectSpinner){
-                spinnerValue = parent.getItemAtPosition(position).toString();
-            }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }

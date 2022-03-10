@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Product"
+                android:text="Add Package"
                 android:textSize="20dp"
                 />
             <TextView
@@ -66,20 +66,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:hint="Product Name"
+                android:hint="Package Name"
                 android:background="@drawable/etbg"
                 android:layout_marginBottom="10dp"
-                />
-            <Spinner
-                android:id="@+id/categorySelectSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/etbg"
                 />
 
             <EditText
@@ -93,11 +82,21 @@
                 android:inputType="number"
                 />
 
+            <EditText
+                android:id="@+id/product_des"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:padding="10dp"
+                android:hint="Description"
+                android:background="@drawable/etbg"
+                android:layout_marginBottom="10dp"
+                />
+
             <Button
                 android:id="@+id/add_product_btn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Add Product"
+                android:text="Add Package"
                 />
 
 

@@ -1,9 +1,11 @@
 package com.example.cashcarry;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,10 +17,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     Context context;
     ArrayList<ProductModel> list;
+    String ShopID;
 
-    public ProductAdapter(Context context, ArrayList<ProductModel> list) {
+    public ProductAdapter(Context context, ArrayList<ProductModel> list,String ShopID) {
         this.context = context;
         this.list = list;
+        this.ShopID = ShopID;
     }
 
     @NonNull
@@ -37,6 +41,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.pTitle.setText(product.getpName());
         holder.pPrice.setText(product.getpPrice()+"$");
 
+        holder.product_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context,PackageDetails.class);
+                intent.putExtra("id",product.getpID());
+                intent.putExtra("ShopID",ShopID);
+                context.startActivity(intent);
+
+            }
+        });
+
+
     }
 
     @Override
@@ -47,12 +64,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView pTitle,pPrice;
+        ImageView product_image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             pTitle = itemView.findViewById(R.id.pTitle);
             pPrice = itemView.findViewById(R.id.pPrice);
+            product_image = itemView.findViewById(R.id.product_image);
 
 
         }

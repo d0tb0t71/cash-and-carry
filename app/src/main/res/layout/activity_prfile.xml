@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBG"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    tools:context=".Profile">
+
+    <TextView
+        android:id="@+id/my_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="My Profile"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity=""
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+
+        >
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/skincare"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp"
+
+            />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="email : example@example.com"
+            android:textAlignment="center"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            android:layout_marginBottom="5dp"
+            />
+
+        <TextView
+            android:id="@+id/mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mobile : 01*********"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            android:layout_marginBottom="5dp"
+            />
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address : "
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            android:layout_marginBottom="5dp"
+            />
+
+        <Button
+            android:id="@+id/add_package"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Package"
+            />
+
+        <Button
+            android:id="@+id/edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            />
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -73,9 +73,12 @@ public class ProductView extends AppCompatActivity {
 
         list = new ArrayList<ProductModel>();
 
-        productAdapter =new ProductAdapter(this,list);
+        productAdapter =new ProductAdapter(this,list,ShopID);
 
         productRecyclerView.setAdapter(productAdapter);
+
+
+        System.out.println("=====================" + ShopID);
 
         DocumentReference documentReference = db.collection("users").document(ShopID);
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -91,12 +94,10 @@ public class ProductView extends AppCompatActivity {
         })
         ;
 
-
-        getData();
-
+        System.out.println("=====================" + ShopID);
 
 
-
+        getData(ShopID);
 
 
 
@@ -109,9 +110,9 @@ public class ProductView extends AppCompatActivity {
 
     }
 
-    private void getData(){
+    private void getData(String ShopID){
 
-        db.collection("products").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("myProduct")
+        db.collection("products").document(ShopID).collection("myProduct")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

@@ -3,7 +3,11 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/etbg"
+    android:padding="5dp"
+    android:layout_marginBottom="5dp"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -17,14 +21,30 @@
             android:gravity="center"
             >
 
+            <LinearLayout
+                android:id="@+id/l1"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/fragrance"
+                    android:scaleType="centerCrop"
+                    />
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/shopName"
-                android:layout_width="250dp"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:layout_marginRight="10dp"
-                android:text="Shop Name"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/l1"
+                android:gravity="center_vertical"
+                android:text="Shop Name"
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:textStyle="bold" />

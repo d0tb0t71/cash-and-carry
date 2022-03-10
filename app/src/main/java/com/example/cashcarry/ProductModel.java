@@ -4,7 +4,7 @@ public class ProductModel {
 
     String pID;
     String pName;
-    String pType;
+    String pDes;
     String pPrice;
 
     public ProductModel() {
@@ -13,7 +13,7 @@ public class ProductModel {
     public ProductModel(String pID, String pName, String pType, String pPrice) {
         this.pID = pID;
         this.pName = pName;
-        this.pType = pType;
+        this.pDes = pType;
         this.pPrice = pPrice;
     }
 
@@ -34,11 +34,11 @@ public class ProductModel {
     }
 
     public String getpType() {
-        return pType;
+        return pDes;
     }
 
     public void setpType(String pType) {
-        this.pType = pType;
+        this.pDes = pType;
     }
 
     public String getpPrice() {

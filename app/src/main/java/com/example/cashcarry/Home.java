@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +33,7 @@ public class Home extends AppCompatActivity {
 
     SliderView sliderView;
     RecyclerView shop_recyclerview;
+    ImageView my_profile_img;
     int[] images = {R.drawable.c1 ,R.drawable.c2,R.drawable.c3,R.drawable.c4};
 
     UserAdapter userAdapter;
@@ -50,6 +53,7 @@ public class Home extends AppCompatActivity {
         }
 
         shop_recyclerview = findViewById(R.id.shop_recyclerview);
+        my_profile_img = findViewById(R.id.my_profile_img);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(Home.this);
@@ -78,7 +82,14 @@ public class Home extends AppCompatActivity {
                         for(DocumentChange dc : value.getDocumentChanges()){
 
                             if(dc.getType() == DocumentChange.Type.ADDED){
-                                list.add(dc.getDocument().toObject(UserModel.class));
+
+                                UserModel userModel = dc.getDocument().toObject(UserModel.class);
+
+                                if(userModel.getUserStatus().equals("Admin")){
+                                    list.add(userModel);
+                                }
+
+
                             }
 
                             userAdapter.notifyDataSetChanged();
@@ -89,6 +100,15 @@ public class Home extends AppCompatActivity {
                 });
 
 
+
+        my_profile_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(), Profile.class));
+
+            }
+        });
 
 
 
@@ -102,5 +122,12 @@ public class Home extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        finishAffinity();
     }
 }

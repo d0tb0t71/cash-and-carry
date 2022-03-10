@@ -50,7 +50,7 @@ public class VerifyEmail extends AppCompatActivity {
             if(user.isEmailVerified()){
 
                 progress.show();
-                startActivity(new Intent(getApplicationContext(), ProductView.class));
+                startActivity(new Intent(getApplicationContext(), Home.class));
             }
             else{
                 user.sendEmailVerification();

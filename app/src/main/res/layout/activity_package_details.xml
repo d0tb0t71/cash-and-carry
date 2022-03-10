@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBG"
+    tools:context=".PackageDetails">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tool"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:src="@drawable/makeup"
+                android:textAlignment="center" />
+
+
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Package Name"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Package Price : 0.0$"
+                android:textAlignment="center"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:text="Package Description : " />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+    <LinearLayout
+        android:id="@+id/tool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        >
+
+        <LinearLayout
+            android:id="@+id/l1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/edit_item"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Edit Item"
+                android:layout_marginRight="10dp"
+                />
+            <Button
+                android:id="@+id/delete_item"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Delete Item"
+                android:textColor="@color/white"
+                android:backgroundTint="#BD1010"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/order_now"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Order Now"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:visibility="gone"
+            />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +27,7 @@ public class Register extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseFirestore db;
+    RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +46,19 @@ public class Register extends AppCompatActivity {
         register_c_pass = findViewById(R.id.register_c_pass);
         register_mobile = findViewById(R.id.register_mobile);
         register_address = findViewById(R.id.register_address);
+        radioGroup = findViewById(R.id.radioGroup);
+
+
 
 
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                int selecedRadio = radioGroup.getCheckedRadioButtonId();
+                RadioButton radioButton = (RadioButton) findViewById(selecedRadio);
+                String userStatus = radioButton.getText().toString();
 
                 String email = register_email.getText().toString();
                 String name = register_name.getText().toString();
@@ -67,7 +77,7 @@ public class Register extends AppCompatActivity {
 
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            UserModel userModel = new UserModel(user.getUid(),"",name,email,mobile,"admin","false","Not Provided Yet");
+                            UserModel userModel = new UserModel(user.getUid(),"",name,email,mobile,userStatus,"false",address);
 
                             db = FirebaseFirestore.getInstance();
 
@@ -92,7 +102,7 @@ public class Register extends AppCompatActivity {
                 });
 
 
-                startActivity(new Intent(getApplicationContext(), ProductView.class));
+
 
             }
         });
