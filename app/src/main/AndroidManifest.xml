@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CashCarry">
         <activity
+            android:name=".OrderDetails"
+            android:exported="false" />
+        <activity
+            android:name=".OrderList"
+            android:exported="false" />
+        <activity
+            android:name=".EditPackage"
+            android:exported="false" />
+        <activity
             android:name=".PackageDetails"
             android:exported="false" />
         <activity

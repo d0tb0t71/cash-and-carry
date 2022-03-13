@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="5dp"
+    android:background="@color/white"
+    android:padding="5dp"
+    >
+
+    <TextView
+        android:id="@+id/orderID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order ID"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/orderTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Title"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/orderDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Date :"
+        />
+
+</LinearLayout>

@@ -55,7 +55,7 @@ public class VerifyEmail extends AppCompatActivity {
             else{
                 user.sendEmailVerification();
                 progress.show();
-                Toast.makeText(getApplicationContext(), "Email Sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Cash and Carry sent you an email.\nPlease check your email which will contain a verification link and verify it.", Toast.LENGTH_SHORT).show();
             }
 
             Handler handler = new Handler();

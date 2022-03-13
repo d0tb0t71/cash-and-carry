@@ -10,9 +10,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:src="@drawable/login_front"
-        android:scaleType="fitXY"
-        />
+        android:scaleType="centerCrop"
+        android:src="@drawable/login_front" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -86,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="Don't have an account? REGISTER NOW"
                 android:textAlignment="center"
+                android:layout_marginBottom="30dp"
                 />
 
 

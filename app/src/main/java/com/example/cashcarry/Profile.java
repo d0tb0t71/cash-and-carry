@@ -21,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class Profile extends AppCompatActivity {
 
     TextView username,email,mobile,address;
-    Button add_package,edit_profile,logout;
+    Button add_package,edit_profile,logout,order_list;
 
     FirebaseFirestore db;
     FirebaseAuth mAuth;
@@ -40,6 +40,7 @@ public class Profile extends AppCompatActivity {
         edit_profile =findViewById(R.id.edit_profile);
         logout =findViewById(R.id.logout);
         address =findViewById(R.id.address);
+        order_list =findViewById(R.id.order_list);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -65,6 +66,15 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(getApplicationContext(),AddProduct.class));
+
+            }
+        });
+
+        order_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(),OrderList.class));
 
             }
         });

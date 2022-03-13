@@ -88,8 +88,6 @@ public class Home extends AppCompatActivity {
                                 if(userModel.getUserStatus().equals("Admin")){
                                     list.add(userModel);
                                 }
-
-
                             }
 
                             userAdapter.notifyDataSetChanged();

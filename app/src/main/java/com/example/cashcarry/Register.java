@@ -60,7 +60,7 @@ public class Register extends AppCompatActivity {
                 RadioButton radioButton = (RadioButton) findViewById(selecedRadio);
                 String userStatus = radioButton.getText().toString();
 
-                String email = register_email.getText().toString();
+                String email = register_email.getText().toString().trim();
                 String name = register_name.getText().toString();
                 String pass = register_pass.getText().toString();
                 String c_pass = register_c_pass.getText().toString();
@@ -68,38 +68,56 @@ public class Register extends AppCompatActivity {
                 String address = register_address.getText().toString();
 
 
-                mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!name.matches(".*\\d.*") && pass.length()>5 && pass.equals(c_pass) && email.length()>0 && mobile.length()>10 && address.length()>5){
 
-                        if(task.isSuccessful()){
+                    mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-                            UserModel userModel = new UserModel(user.getUid(),"",name,email,mobile,userStatus,"false",address);
-
-                            db = FirebaseFirestore.getInstance();
+                            if(task.isSuccessful()){
 
 
-                            db.collection("users")
-                                    .document(user.getUid())
-                                    .set(userModel);
+                                FirebaseUser user = mAuth.getCurrentUser();
 
-                            startActivity(new Intent(getApplicationContext(),VerifyEmail.class));
+                                UserModel userModel = new UserModel(user.getUid(),"",name,email,mobile,userStatus,"false",address);
+
+                                db = FirebaseFirestore.getInstance();
+
+
+                                db.collection("users")
+                                        .document(user.getUid())
+                                        .set(userModel);
+
+                                startActivity(new Intent(getApplicationContext(),VerifyEmail.class));
+
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "Registration Failed\n"+task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            }
 
                         }
-                        else{
-                            Toast.makeText(getApplicationContext(), "Registration Failed\n"+task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "Registration Failed !\n"+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
+                    });
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Registration Failed !\n"+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                }
+                else if(name.matches(".*\\d.*")){
+                    register_name.setError("Name can not contain number");
+                }
+                else if(!pass.equals(c_pass)){
+                    register_c_pass.setError("Password doesn't matches");
+                }
+                else if(pass.length()<6){
+                    register_pass.setError("Password Length must be more than 6");
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Input valid information", Toast.LENGTH_SHORT).show();
+                }
+
+
 
 
 

@@ -53,29 +53,36 @@ public class Login extends AppCompatActivity {
                 String pass = login_pass.getText().toString();
 
 
-                mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        if(task.isSuccessful() ){
-                            if(user.isEmailVerified()){
-                                startActivity(new Intent(getApplicationContext(), Home.class));
-                            }
-                            else
-                            {
-                                startActivity(new Intent(getApplicationContext(),VerifyEmail.class));
+                if(pass.length()>5){
+                    mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if(task.isSuccessful() ){
+                                if(user.isEmailVerified()){
+                                    startActivity(new Intent(getApplicationContext(), Home.class));
+                                }
+                                else
+                                {
+                                    startActivity(new Intent(getApplicationContext(),VerifyEmail.class));
+                                }
+
                             }
 
                         }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "Login Failed \n"+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else if(pass.length()<6){
+                    login_pass.setError("Enter a password of length 6");
+                }
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Login Failed \n"+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
 
@@ -95,9 +102,16 @@ public class Login extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if(mAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), Home.class));
-        }
+
+       if(mAuth.getCurrentUser()!= null){
+           if(mAuth.getCurrentUser().isEmailVerified()){
+               startActivity(new Intent(getApplicationContext(), Home.class));
+           }
+           else{
+               startActivity(new Intent(getApplicationContext(), VerifyEmail.class));
+           }
+       }
+
 
     }
 }

@@ -35,7 +35,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/skincare"
+            android:src="@drawable/icon"
             android:scaleType="centerCrop"
             android:layout_marginBottom="20dp"
 
@@ -93,6 +93,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Package"
+            />
+
+        <Button
+            android:id="@+id/order_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Order List"
             />
 
         <Button
