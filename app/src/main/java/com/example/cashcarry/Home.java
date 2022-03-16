@@ -8,15 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,7 +31,7 @@ public class Home extends AppCompatActivity {
     SliderView sliderView;
     RecyclerView shop_recyclerview;
     ImageView my_profile_img;
-    int[] images = {R.drawable.c1 ,R.drawable.c2,R.drawable.c3,R.drawable.c4};
+    int[] images = {R.drawable.c1,R.drawable.c2,R.drawable.c3,R.drawable.c4};
 
     UserAdapter userAdapter;
     ArrayList<UserModel> list;
@@ -85,7 +82,7 @@ public class Home extends AppCompatActivity {
 
                                 UserModel userModel = dc.getDocument().toObject(UserModel.class);
 
-                                if(userModel.getUserStatus().equals("Admin")){
+                                if(userModel.getUserStatus().equals("Admin") || userModel.getUserStatus().equals("Seller")){
                                     list.add(userModel);
                                 }
                             }

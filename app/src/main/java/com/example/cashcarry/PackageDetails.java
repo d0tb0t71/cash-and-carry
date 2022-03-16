@@ -55,7 +55,7 @@ public class PackageDetails extends AppCompatActivity {
 
                 String st = value.getString("userStatus");
 
-                if (st.equals("Admin")&& ShopID.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                if ((st.equals("Admin")||st.equals("Seller"))&& ShopID.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                     linearLayout.setVisibility(View.VISIBLE);
                     System.out.println("--------------------------" + itemId);
                 } else if (st.equals("Customer")) {
@@ -99,7 +99,10 @@ public class PackageDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getApplicationContext(),EditPackage.class));
+                        Intent intent = new Intent(getApplicationContext(),EditPackage.class);
+                        intent.putExtra("ShopID",ShopID);
+                        intent.putExtra("ProductID",itemId);
+                        startActivity(intent);
 
             }
         });
@@ -137,6 +140,22 @@ public class PackageDetails extends AppCompatActivity {
         });
 
 
+        delete_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                db.collection("products")
+                        .document(ShopID)
+                        .collection("myProduct")
+                        .document(itemId)
+                        .delete();
+
+                Toast.makeText(getApplicationContext(), "Item Deleted Successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),Home.class));
+                finish();
+
+            }
+        });
 
 
 

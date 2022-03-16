@@ -62,7 +62,7 @@ public class AddProduct extends AppCompatActivity {
                         .document(pID)
                         .set(product);
 
-                startActivity(new Intent(getApplicationContext(), ProductView.class));
+                startActivity(new Intent(getApplicationContext(), Profile.class));
                 finish();
 
 

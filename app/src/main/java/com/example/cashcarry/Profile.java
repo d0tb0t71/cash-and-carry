@@ -66,6 +66,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(getApplicationContext(),AddProduct.class));
+                finish();
 
             }
         });
