@@ -75,4 +75,13 @@ public class VerifyEmail extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(getApplicationContext(),Login.class));
+        finish();
+
+    }
 }
