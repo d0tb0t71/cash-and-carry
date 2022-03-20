@@ -80,7 +80,7 @@ public class PackageDetails extends AppCompatActivity {
 
                 item_title.setText("" + value.getString("pName"));
                 item_description.setText("Package Description : \n" + value.getString("pType"));
-                item_price.setText("Package Price : " + value.getString("pPrice") + "$");
+                item_price.setText("Package Price : " + value.getString("pPrice") + "৳");
 
 //                itemName = ""+value.getString("item_name");
 //                itemDes = ""+value.getString("item_des");
