@@ -33,13 +33,22 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/etbg"
                     android:hint="Search..."
+                    android:visibility="gone"
                     android:padding="10dp" />
+
+                <TextView
+                    android:id="@+id/cc"
+                    android:layout_width="290dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cash and Carry"
+                    android:textSize="25dp"
+                    android:gravity="center_vertical"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@id/search_box"
+                    android:layout_toRightOf="@id/cc"
                     app:cardCornerRadius="100dp">
 
                     <ImageView

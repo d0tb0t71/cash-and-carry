@@ -94,8 +94,6 @@ public class ProductView extends AppCompatActivity {
         })
         ;
 
-        System.out.println("=====================" + ShopID);
-
 
         getData(ShopID);
 
